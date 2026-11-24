@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+:root {
+  --background: #fafaf7;
+  --foreground: #19322b;
+  --primary: #0d9488;
+  --primary-hover: #0f766e;
+  --primary-light: #f0fdfa;
+  --primary-foreground: #ffffff;
+  --secondary: #13382e;
+  --secondary-foreground: #ffffff;
+  --accent: #e08338;
+  --accent-light: #fef3e9;
+  --accent-foreground: #19322b;
+  --card: #ffffff;
+  --card-border: #e7ede8;
+  --muted: #576f67;
+  --muted-light: #f2f7f4;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-light: var(--primary-light);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-light: var(--accent-light);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-card: var(--card);
+  --color-card-border: var(--card-border);
+  --color-muted: var(--muted);
+  --color-muted-light: var(--muted-light);
+  
+  --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'Playfair Display', Georgia, Cambria, 'Times New Roman', Times, serif;
+  --font-signature: 'Great Vibes', cursive, 'Brush Script MT', sans-serif;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom smooth selection */
+::selection {
+  background-color: #ccfbf1;
+  color: #0f766e;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #f7f9f7;
+}
+::-webkit-scrollbar-thumb {
+  background: #d1ded6;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #0d9488;
+}
