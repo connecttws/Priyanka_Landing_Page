@@ -12,7 +12,7 @@ export default function HeroSection({ onOpenBooking }: HeroSectionProps) {
   const [isPlaying, setIsPlaying] = useState(false);
 
   return (
-    <header className="relative overflow-hidden bg-gradient-to-b from-[#f5f9f6] via-[#fafaf7] to-[#fafaf7] pt-16 pb-10 sm:pt-22 md:pt-26 lg:pt-28 sm:pb-20">
+    <header className="relative overflow-hidden bg-gradient-to-b from-[#f5f9f6] via-[#fafaf7] to-[#fafaf7] pt-7 pb-10 sm:pt-10 md:pt-12 lg:pt-14 sm:pb-16">
       {/* Light Delicate Ambient Blooms */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[550px] bg-gradient-to-br from-teal-100/50 via-emerald-50/40 to-transparent rounded-full blur-3xl pointer-events-none -z-10" />
       <div className="absolute top-24 right-[-100px] w-96 h-96 bg-amber-100/40 rounded-full blur-3xl pointer-events-none -z-10" />
@@ -23,12 +23,12 @@ export default function HeroSection({ onOpenBooking }: HeroSectionProps) {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="mx-auto max-w-4xl text-center">
           
-          {/* Eyebrow Pill - Compact on mobile and desktop */}
+          {/* Eyebrow Pill - Ultra-compact spacing */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-white/90 border border-teal-200/70 shadow-xs mb-3 sm:mb-4 md:mb-5"
+            className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1 sm:px-4 sm:py-1 rounded-full bg-white/90 border border-teal-200/70 shadow-xs mb-2 sm:mb-2.5 md:mb-3"
           >
             <span className="flex h-2 w-2 rounded-full bg-teal-500 animate-ping" />
             <span className="text-[11px] sm:text-sm font-semibold text-teal-800 tracking-wide">
@@ -53,45 +53,45 @@ export default function HeroSection({ onOpenBooking }: HeroSectionProps) {
             </span>
           </motion.h1>
 
-          {/* 1. VSL Video Container - Compact desktop sizing */}
+          {/* 1. VSL Video Container - Scaled down for optimal viewport height */}
           <motion.div
             initial={{ opacity: 0, scale: 0.96, y: 25 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.25 }}
-            className="mt-6 sm:mt-8 md:mt-9 relative w-full max-w-2xl md:max-w-[640px] lg:max-w-[660px] mx-auto aspect-video rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl shadow-teal-950/10 border-2 sm:border-4 border-white bg-[#0f2922]"
+            className="mt-3.5 sm:mt-4 md:mt-5 relative w-full max-w-[460px] sm:max-w-[490px] md:max-w-[520px] lg:max-w-[540px] mx-auto aspect-video rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-xl sm:shadow-2xl shadow-teal-950/10 border-2 sm:border-4 border-white bg-[#0f2922]"
           >
             {!isPlaying ? (
-              <div className="absolute inset-0 flex flex-col items-center justify-center p-4 sm:p-5 md:p-6 text-center text-white bg-gradient-to-t from-[#0d2a23] via-[#133e33]/90 to-[#15463a]/80">
+              <div className="absolute inset-0 flex flex-col items-center justify-center p-2.5 sm:p-4 md:p-5 text-center text-white bg-gradient-to-t from-[#0d2a23] via-[#133e33]/90 to-[#15463a]/80">
                 {/* Background decorative pattern */}
                 <div className="absolute inset-0 bg-[radial-gradient(#2dd4bf20_1px,transparent_1px)] [background-size:20px_20px] pointer-events-none" />
 
                 {/* Video Tag */}
-                <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-white/10 backdrop-blur-md text-[10px] sm:text-xs font-medium text-emerald-200 mb-2 sm:mb-3 border border-white/15">
+                <div className="inline-flex items-center gap-1.5 px-2 py-0.5 sm:px-2.5 sm:py-0.5 rounded-full bg-white/10 backdrop-blur-md text-[10px] sm:text-xs font-medium text-emerald-200 mb-1 sm:mb-2 border border-white/15">
                   <HeartPulse className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-teal-300" />
                   <span>Free 8-Minute Masterclass by Priyanka</span>
                 </div>
 
-                <h3 className="text-base sm:text-xl md:text-2xl font-bold max-w-lg mb-1.5 sm:mb-2 leading-snug drop-shadow-sm font-serif">
+                <h3 className="text-xs sm:text-sm md:text-base font-bold max-w-md mb-1 sm:mb-1.5 leading-snug drop-shadow-sm font-serif">
                   Why A Thyroid Tablet Alone Leaves You Exhausted & The 3-Step Nutrition Fix
                 </h3>
                 
-                <p className="text-[11px] sm:text-xs md:text-sm text-stone-200/90 max-w-md mb-3 sm:mb-4 leading-relaxed line-clamp-2 sm:line-clamp-none">
+                <p className="text-[9.5px] sm:text-xs md:text-xs text-stone-200/90 max-w-sm mb-2 sm:mb-2.5 leading-relaxed line-clamp-2">
                   Learn how customized nutrition unblocks thyroid cellular conversion, revitalizes sluggish metabolism, and restores your daily drive.
                 </p>
 
                 {/* Big Animated Play Button */}
                 <button
                   onClick={() => setIsPlaying(true)}
-                  className="group relative flex items-center gap-2 sm:gap-2.5 px-4 py-2 sm:px-5 sm:py-2.5 md:py-3 rounded-full bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-400 hover:to-emerald-400 text-white font-semibold shadow-lg shadow-teal-900/40 hover:scale-105 active:scale-95 transition-all cursor-pointer"
+                  className="group relative flex items-center gap-2 sm:gap-2.5 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-400 hover:to-emerald-400 text-white font-semibold shadow-lg shadow-teal-900/40 hover:scale-105 active:scale-95 transition-all cursor-pointer"
                   aria-label="Play VSL video"
                 >
-                  <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white/30 transition-colors">
-                    <Play className="w-3.5 h-3.5 fill-white text-white ml-0.5" />
+                  <div className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white/30 transition-colors">
+                    <Play className="w-2.5 h-2.5 sm:w-3 sm:h-3 fill-white text-white ml-0.5" />
                   </div>
-                  <span className="text-xs sm:text-sm md:text-base tracking-wide">Watch Video Now</span>
+                  <span className="text-[11px] sm:text-xs md:text-sm tracking-wide">Watch Video Now</span>
                 </button>
 
-                <div className="absolute bottom-2.5 sm:bottom-3 left-4 right-4 sm:left-6 sm:right-6 flex items-center justify-between text-[10px] sm:text-[11px] text-stone-300/80">
+                <div className="absolute bottom-1.5 sm:bottom-2 left-3 right-3 sm:left-4 sm:right-4 flex items-center justify-between text-[8.5px] sm:text-[9.5px] text-stone-300/80">
                   <span className="flex items-center gap-1.5">
                     <Activity className="w-3 h-3 text-emerald-400" />
                     <span>Watch with sound on</span>
@@ -115,7 +115,7 @@ export default function HeroSection({ onOpenBooking }: HeroSectionProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="mt-6 sm:mt-10 flex flex-col items-center"
+            className="mt-4 sm:mt-5 md:mt-6 flex flex-col items-center"
           >
             <button
               onClick={onOpenBooking}
