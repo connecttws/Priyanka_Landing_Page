@@ -1,13 +1,28 @@
 "use client";
 
+import { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { MoonStar, TrendingUp, Sparkles, AlertCircle, HeartCrack, HelpCircle, ArrowRight } from "lucide-react";
+import { 
+  MoonStar, 
+  TrendingUp, 
+  Sparkles, 
+  AlertCircle, 
+  HeartCrack, 
+  ArrowRight, 
+  ChevronLeft, 
+  ChevronRight 
+} from "lucide-react";
 
 interface SymptomsSectionProps {
   onOpenBooking: () => void;
 }
 
 export default function SymptomsSection({ onOpenBooking }: SymptomsSectionProps) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+
   const symptoms = [
     {
       icon: MoonStar,
@@ -51,16 +66,57 @@ export default function SymptomsSection({ onOpenBooking }: SymptomsSectionProps)
     },
   ];
 
+  const updateScrollState = () => {
+    if (!scrollRef.current) return;
+    const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+    setCanScrollLeft(scrollLeft > 10);
+    setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
+
+    const cardWidth = scrollRef.current.firstElementChild?.clientWidth || 360;
+    const index = Math.round(scrollLeft / cardWidth);
+    setActiveIndex(Math.min(Math.max(index, 0), symptoms.length - 1));
+  };
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    el.addEventListener("scroll", updateScrollState, { passive: true });
+    updateScrollState();
+    return () => el.removeEventListener("scroll", updateScrollState);
+  }, []);
+
+  const scroll = (direction: "left" | "right") => {
+    if (!scrollRef.current) return;
+    const cardWidth = scrollRef.current.firstElementChild?.clientWidth || 360;
+    const gap = 24; // 1.5rem (gap-6)
+    const scrollAmount = cardWidth + gap;
+
+    scrollRef.current.scrollBy({
+      left: direction === "left" ? -scrollAmount : scrollAmount,
+      behavior: "smooth",
+    });
+  };
+
+  const scrollToIndex = (index: number) => {
+    if (!scrollRef.current) return;
+    const cardWidth = scrollRef.current.firstElementChild?.clientWidth || 360;
+    const gap = 24;
+    scrollRef.current.scrollTo({
+      left: index * (cardWidth + gap),
+      behavior: "smooth",
+    });
+  };
+
   return (
     <section id="symptoms" className="py-14 sm:py-20 bg-white relative overflow-hidden">
-      {/* Soft background decor */}
+      {/* Soft background ambient decor */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-50/50 rounded-full blur-3xl pointer-events-none -z-10" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-amber-50/40 rounded-full blur-3xl pointer-events-none -z-10" />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="mx-auto max-w-3xl text-center mb-12 sm:mb-16">
+        <div className="mx-auto max-w-3xl text-center mb-8 sm:mb-12">
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -92,51 +148,106 @@ export default function SymptomsSection({ onOpenBooking }: SymptomsSectionProps)
           </motion.p>
         </div>
 
-        {/* 4 Symptom Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
-          {symptoms.map((item, index) => {
-            const Icon = item.icon;
-            return (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
-                className="group relative bg-[#fafaf7] hover:bg-white rounded-3xl p-6 sm:p-8 border border-[#e7ede8] hover:border-teal-300/80 shadow-xs hover:shadow-xl hover:shadow-teal-950/5 transition-all duration-300 flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-5">
-                    <div className={`w-12 h-12 rounded-2xl flex items-center justify-center border shadow-xs ${item.iconColor}`}>
-                      <Icon className="w-6 h-6" />
+        {/* Carousel Navigation Top Controls (Desktop & Mobile) */}
+        <div className="flex items-center justify-between max-w-5xl mx-auto mb-4 px-2">
+          <div className="flex items-center gap-2 text-xs font-semibold text-stone-500">
+            <span className="inline-block w-2 h-2 rounded-full bg-teal-500 animate-pulse"></span>
+            <span>Swipe or click arrows to explore symptoms</span>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => scroll("left")}
+              disabled={!canScrollLeft}
+              className={`w-10 h-10 rounded-full border flex items-center justify-center transition-all ${
+                canScrollLeft
+                  ? "bg-white border-stone-300 text-[#13382e] hover:bg-teal-50 hover:border-teal-400 shadow-sm active:scale-95 cursor-pointer"
+                  : "bg-stone-50 border-stone-200 text-stone-300 cursor-not-allowed"
+              }`}
+              aria-label="Previous symptom card"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <button
+              onClick={() => scroll("right")}
+              disabled={!canScrollRight}
+              className={`w-10 h-10 rounded-full border flex items-center justify-center transition-all ${
+                canScrollRight
+                  ? "bg-white border-stone-300 text-[#13382e] hover:bg-teal-50 hover:border-teal-400 shadow-sm active:scale-95 cursor-pointer"
+                  : "bg-stone-50 border-stone-200 text-stone-300 cursor-not-allowed"
+              }`}
+              aria-label="Next symptom card"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
+        </div>
+
+        {/* Carousel Track Container */}
+        <div className="relative max-w-5xl mx-auto">
+          <div
+            ref={scrollRef}
+            className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-6 pt-2 px-2 -mx-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] scroll-smooth"
+          >
+            {symptoms.map((item, index) => {
+              const Icon = item.icon;
+              return (
+                <div
+                  key={index}
+                  className="snap-start shrink-0 w-[85vw] sm:w-[360px] md:w-[420px] group relative bg-[#fafaf7] hover:bg-white rounded-3xl p-6 sm:p-8 border border-[#e7ede8] hover:border-teal-300 shadow-sm hover:shadow-xl hover:shadow-teal-950/5 transition-all duration-300 flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-5">
+                      <div className={`w-12 h-12 rounded-2xl flex items-center justify-center border shadow-xs ${item.iconColor}`}>
+                        <Icon className="w-6 h-6" />
+                      </div>
+                      <span className="text-[11px] font-semibold text-stone-500 bg-white px-3 py-1 rounded-full border border-stone-200/70 shadow-xs">
+                        {item.badge}
+                      </span>
                     </div>
-                    <span className="text-[11px] font-semibold text-stone-500 bg-white px-3 py-1 rounded-full border border-stone-200/70 shadow-xs">
-                      {item.badge}
-                    </span>
+
+                    <h3 className="text-xl sm:text-2xl font-bold text-[#13382e] leading-snug group-hover:text-teal-800 transition-colors">
+                      {item.title}
+                    </h3>
+
+                    <p className="mt-3 text-sm sm:text-base text-[#576f67] leading-relaxed">
+                      {item.description}
+                    </p>
                   </div>
 
-                  <h3 className="text-xl sm:text-2xl font-bold text-[#13382e] leading-snug group-hover:text-teal-800 transition-colors">
-                    {item.title}
-                  </h3>
-
-                  <p className="mt-3 text-sm sm:text-base text-[#576f67] leading-relaxed">
-                    {item.description}
-                  </p>
+                  <div className="mt-6 pt-4 border-t border-stone-200/60 flex items-center justify-between text-xs font-medium text-stone-500">
+                    <span className="flex items-center gap-1.5 text-stone-600">
+                      <span className="w-1.5 h-1.5 rounded-full bg-teal-500"></span>
+                      {item.stat}
+                    </span>
+                    <button
+                      onClick={onOpenBooking}
+                      className="text-teal-700 font-semibold group-hover:translate-x-0.5 transition-transform flex items-center gap-1 hover:text-teal-900 cursor-pointer"
+                    >
+                      <span>Recognize this?</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
                 </div>
+              );
+            })}
+          </div>
 
-                <div className="mt-6 pt-4 border-t border-stone-200/60 flex items-center justify-between text-xs font-medium text-stone-500">
-                  <span className="flex items-center gap-1.5 text-stone-600">
-                    <span className="w-1.5 h-1.5 rounded-full bg-teal-500"></span>
-                    {item.stat}
-                  </span>
-                  <span className="text-teal-700 font-semibold group-hover:translate-x-0.5 transition-transform flex items-center gap-1">
-                    Recognize this?
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </span>
-                </div>
-              </motion.div>
-            );
-          })}
+          {/* Pagination Indicators / Dots */}
+          <div className="flex items-center justify-center gap-2 mt-4">
+            {symptoms.map((_, dotIdx) => (
+              <button
+                key={dotIdx}
+                onClick={() => scrollToIndex(dotIdx)}
+                className={`transition-all duration-300 rounded-full ${
+                  activeIndex === dotIdx
+                    ? "w-8 h-2.5 bg-teal-600"
+                    : "w-2.5 h-2.5 bg-stone-300 hover:bg-stone-400"
+                }`}
+                aria-label={`Go to slide ${dotIdx + 1}`}
+              />
+            ))}
+          </div>
         </div>
 
         {/* The Reassurance & Empathy Callout Banner */}
