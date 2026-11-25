@@ -45,10 +45,10 @@ export default function HeroSection({ onOpenBooking }: HeroSectionProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold tracking-tight text-[#13382e] leading-[1.2] sm:leading-[1.12]"
+            className="text-3xl sm:text-5xl md:text-6xl font-serif font-bold tracking-tight text-[#13382e] leading-[1.15] sm:leading-[1.12]"
           >
             Taking Thyroid Medication,{" "}
-            <span className="block mt-1 sm:mt-1 font-sans text-teal-700 font-extrabold italic text-xl sm:text-4xl md:text-5xl lg:text-6xl">
+            <span className="block mt-2 sm:mt-1 font-sans text-teal-700 font-extrabold italic">
               But Not Feeling Like Yourself Again?
             </span>
           </motion.h1>
