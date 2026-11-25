@@ -12,7 +12,7 @@ export default function HeroSection({ onOpenBooking }: HeroSectionProps) {
   const [isPlaying, setIsPlaying] = useState(false);
 
   return (
-    <header className="relative overflow-hidden bg-gradient-to-b from-[#f5f9f6] via-[#fafaf7] to-[#fafaf7] pt-7 pb-10 sm:pt-10 md:pt-12 lg:pt-14 sm:pb-16">
+    <header className="relative overflow-hidden bg-gradient-to-b from-[#f5f9f6] via-[#fafaf7] to-[#fafaf7] pt-20 pb-10 sm:pt-22 md:pt-24 lg:pt-26 sm:pb-16">
       {/* Light Delicate Ambient Blooms */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[550px] bg-gradient-to-br from-teal-100/50 via-emerald-50/40 to-transparent rounded-full blur-3xl pointer-events-none -z-10" />
       <div className="absolute top-24 right-[-100px] w-96 h-96 bg-amber-100/40 rounded-full blur-3xl pointer-events-none -z-10" />
@@ -23,12 +23,12 @@ export default function HeroSection({ onOpenBooking }: HeroSectionProps) {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="mx-auto max-w-4xl text-center">
           
-          {/* Eyebrow Pill - Ultra-compact spacing */}
+          {/* Eyebrow Pill - Comfortable spacing below navbar */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1 sm:px-4 sm:py-1 rounded-full bg-white/90 border border-teal-200/70 shadow-xs mb-2 sm:mb-2.5 md:mb-3"
+            className="inline-flex items-center gap-1.5 sm:gap-2 px-3.5 py-1.5 sm:px-4 sm:py-1.5 rounded-full bg-white/90 border border-teal-200/70 shadow-xs mb-3 sm:mb-3.5 md:mb-4"
           >
             <span className="flex h-2 w-2 rounded-full bg-teal-500 animate-ping" />
             <span className="text-[11px] sm:text-sm font-semibold text-teal-800 tracking-wide">
