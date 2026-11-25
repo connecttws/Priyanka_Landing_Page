@@ -28,8 +28,8 @@ export default function Navbar({ onOpenBooking }: NavbarProps) {
         transition={{ duration: 0.5, ease: "easeOut" }}
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
           scrolled
-            ? "bg-[#fafaf7]/90 backdrop-blur-md shadow-sm border-b border-[#e7ede8] py-3.5"
-            : "bg-transparent py-5"
+            ? "bg-[#fafaf7]/90 backdrop-blur-md shadow-sm border-b border-[#e7ede8] py-2.5 sm:py-3.5"
+            : "bg-transparent py-3 sm:py-5"
         }`}
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
