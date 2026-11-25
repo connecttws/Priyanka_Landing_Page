@@ -40,7 +40,7 @@ export default function HeroSection({ onOpenBooking }: HeroSectionProps) {
             </span>
           </motion.div>
 
-          {/* Primary Editorial Headline - slightly refined sizing for desktop */}
+          {/* Primary Editorial Headline */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -53,22 +53,12 @@ export default function HeroSection({ onOpenBooking }: HeroSectionProps) {
             </span>
           </motion.h1>
 
-          {/* Human-crafted Subheadline - reduced text size on mobile view as requested */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="mt-3 sm:mt-6 text-xs sm:text-base md:text-lg text-[#3d554e] font-normal leading-relaxed max-w-2xl sm:max-w-3xl mx-auto px-1 sm:px-0"
-          >
-            Discover how <strong className="font-semibold text-[#13382e]">Priyanka</strong>, a Thyroid-Focused Nutritionist, helps women manage thyroid symptoms, boost energy, and work toward healthy weight management through personalised nutrition—so they can feel like themselves again.
-          </motion.p>
-
-          {/* VSL Video Container */}
+          {/* 1. VSL Video Container - Placed directly below headline */}
           <motion.div
             initial={{ opacity: 0, scale: 0.96, y: 25 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="mt-5 sm:mt-10 relative w-full max-w-3xl mx-auto aspect-video rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl shadow-teal-950/10 border-2 sm:border-4 border-white bg-[#0f2922]"
+            transition={{ duration: 0.8, delay: 0.25 }}
+            className="mt-6 sm:mt-10 relative w-full max-w-3xl mx-auto aspect-video rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl shadow-teal-950/10 border-2 sm:border-4 border-white bg-[#0f2922]"
           >
             {!isPlaying ? (
               <div className="absolute inset-0 flex flex-col items-center justify-center p-4 sm:p-6 text-center text-white bg-gradient-to-t from-[#0d2a23] via-[#133e33]/90 to-[#15463a]/80">
@@ -120,11 +110,11 @@ export default function HeroSection({ onOpenBooking }: HeroSectionProps) {
             )}
           </motion.div>
 
-          {/* Primary CTA Button */}
+          {/* 2. Primary CTA Button - Placed directly below VSL */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.45 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
             className="mt-6 sm:mt-10 flex flex-col items-center"
           >
             <button
@@ -154,6 +144,16 @@ export default function HeroSection({ onOpenBooking }: HeroSectionProps) {
               </span>
             </div>
           </motion.div>
+
+          {/* 3. Explanatory descriptive text - Moved down after CTA button */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.55 }}
+            className="mt-6 sm:mt-8 text-xs sm:text-base md:text-lg text-[#3d554e] font-normal leading-relaxed max-w-2xl sm:max-w-3xl mx-auto px-2 sm:px-0"
+          >
+            Discover how <strong className="font-semibold text-[#13382e]">Priyanka</strong>, a Thyroid-Focused Nutritionist, helps women manage thyroid symptoms, boost energy, and work toward healthy weight management through personalised nutrition—so they can feel like themselves again.
+          </motion.p>
 
         </div>
       </div>
