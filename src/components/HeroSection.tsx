@@ -12,7 +12,7 @@ export default function HeroSection({ onOpenBooking }: HeroSectionProps) {
   const [isPlaying, setIsPlaying] = useState(false);
 
   return (
-    <header className="relative overflow-hidden bg-gradient-to-b from-[#f5f9f6] via-[#fafaf7] to-[#fafaf7] pt-18 pb-10 sm:pt-28 md:pt-36 sm:pb-20">
+    <header className="relative overflow-hidden bg-gradient-to-b from-[#f5f9f6] via-[#fafaf7] to-[#fafaf7] pt-16 pb-10 sm:pt-22 md:pt-26 lg:pt-28 sm:pb-20">
       {/* Light Delicate Ambient Blooms */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[550px] bg-gradient-to-br from-teal-100/50 via-emerald-50/40 to-transparent rounded-full blur-3xl pointer-events-none -z-10" />
       <div className="absolute top-24 right-[-100px] w-96 h-96 bg-amber-100/40 rounded-full blur-3xl pointer-events-none -z-10" />
@@ -23,12 +23,12 @@ export default function HeroSection({ onOpenBooking }: HeroSectionProps) {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="mx-auto max-w-4xl text-center">
           
-          {/* Eyebrow Pill - Compact on mobile */}
+          {/* Eyebrow Pill - Compact on mobile and desktop */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-white/90 border border-teal-200/70 shadow-xs mb-3 sm:mb-6"
+            className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-white/90 border border-teal-200/70 shadow-xs mb-3 sm:mb-4 md:mb-5"
           >
             <span className="flex h-2 w-2 rounded-full bg-teal-500 animate-ping" />
             <span className="text-[11px] sm:text-sm font-semibold text-teal-800 tracking-wide">
@@ -40,15 +40,15 @@ export default function HeroSection({ onOpenBooking }: HeroSectionProps) {
             </span>
           </motion.div>
 
-          {/* Primary Editorial Headline */}
+          {/* Primary Editorial Headline - slightly refined sizing for desktop */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-3xl sm:text-5xl md:text-6xl font-serif font-bold tracking-tight text-[#13382e] leading-[1.15] sm:leading-[1.12]"
+            className="text-3xl sm:text-[2.6rem] md:text-5xl lg:text-[3.25rem] font-serif font-bold tracking-tight text-[#13382e] leading-[1.18] sm:leading-[1.14]"
           >
             Taking Thyroid Medication,{" "}
-            <span className="block mt-2 sm:mt-1 font-sans text-teal-700 font-extrabold italic">
+            <span className="block mt-1.5 sm:mt-1 font-sans text-teal-700 font-extrabold italic">
               But Not Feeling Like Yourself Again?
             </span>
           </motion.h1>
