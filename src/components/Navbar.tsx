@@ -34,21 +34,16 @@ export default function Navbar({ onOpenBooking }: NavbarProps) {
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
-            {/* Brand Logo & Title */}
-            <a href="#" className="flex items-center gap-3 group">
-              <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-teal-500 to-emerald-700 flex items-center justify-center text-white shadow-md shadow-teal-700/15 group-hover:scale-105 transition-transform">
+            {/* Brand Logo & Name */}
+            <a href="#" className="flex items-center gap-2.5 sm:gap-3 group">
+              <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-teal-500 to-emerald-700 flex items-center justify-center text-white shadow-md shadow-teal-700/15 group-hover:scale-105 transition-transform shrink-0">
                 <span className="text-xl font-bold font-serif leading-none">P</span>
               </div>
-              <div className="flex flex-col">
-                <div className="flex items-center gap-1.5">
-                  <span className="font-signature text-2xl sm:text-3xl text-[#13382e] leading-tight">
-                    Priyanka
-                  </span>
-                  <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                </div>
-                <span className="text-[10px] tracking-[0.18em] text-[#576f67] font-semibold uppercase -mt-0.5">
-                  Thyroid-Focused Nutritionist
+              <div className="flex items-center gap-1.5">
+                <span className="font-signature text-2xl sm:text-3xl text-[#13382e] leading-tight">
+                  Priyanka
                 </span>
+                <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
               </div>
             </a>
 
